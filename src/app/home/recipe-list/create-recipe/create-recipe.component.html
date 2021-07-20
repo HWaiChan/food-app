@@ -1,7 +1,24 @@
 <div class="example-container" [class.mat-elevation-z2]=true>
-    <mat-form-field appearance="fill">
-        <mat-label>Recipe Name</mat-label>
-        <input matInput>
-    </mat-form-field>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label for="name">Recipe Name: </mat-label>
+                <input matInput id="name" type="text" formControlName="name">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label for="cuisine">Cuisine: </mat-label>
+                <input matInput id="cuisine" type="text" formControlName="cuisine">
+            </mat-form-field>
+        </p>
+
+
+    <button mat-button type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+
+    
+
+
 </div>
 
