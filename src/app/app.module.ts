@@ -13,11 +13,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
+
 
 
 
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
-import { SearchComponent } from './home/recipe-list/search/search.component'
+import { SearchComponent } from './home/recipe-list/search/search.component';
+import { SidebarComponent } from './sidebar/sidebar.component'
 
 
 @NgModule({
@@ -28,6 +33,7 @@ import { SearchComponent } from './home/recipe-list/search/search.component'
     TopNavbarComponent,
     RecipeListComponent,
     SearchComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,9 @@ import { SearchComponent } from './home/recipe-list/search/search.component'
     MatAutocompleteModule,
     MatFormFieldModule, 
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
