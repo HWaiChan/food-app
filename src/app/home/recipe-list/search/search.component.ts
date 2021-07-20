@@ -16,8 +16,6 @@ export class SearchComponent implements OnInit {
 
   @Input() recipes: Recipe[] = [];
 
-  recipetest: Recipe[] = [{name: "wow"}, {name:"123"}];
-
   filteredRecipes: Observable<any[]> = new Observable<any[]>();
 
   constructor() {
@@ -25,7 +23,7 @@ export class SearchComponent implements OnInit {
     .pipe(
       startWith(''),
       map(value => value.name),
-      map(name => name ? this._filter(name) : this.recipetest.slice())
+      map(name => name ? this._filter(name) : this.recipes.slice())
     );
   }
 
@@ -38,8 +36,8 @@ export class SearchComponent implements OnInit {
 
   private _filter(name: string): Recipe[] {
     const filterValue = name.toLowerCase();
-
-    return this.recipetest.filter(recipe => recipe.name.toLowerCase().includes(filterValue));
+    console.log(this.recipes.filter(recipe => recipe.name.toLowerCase().includes(filterValue)));
+    return this.recipes.filter(recipe => recipe.name.toLowerCase().includes(filterValue));
   }
 }
 

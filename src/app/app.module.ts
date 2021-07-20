@@ -12,18 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 
-
-
-
-
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
-import { SidebarComponent } from './sidebar/sidebar.component'
-
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { CreateRecipeComponent } from './home/recipe-list/create-recipe/create-recipe.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +31,7 @@ import { SidebarComponent } from './sidebar/sidebar.component'
     RecipeListComponent,
     SearchComponent,
     SidebarComponent,
+    CreateRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,13 +41,14 @@ import { SidebarComponent } from './sidebar/sidebar.component'
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
-    MatFormFieldModule, 
-    FormsModule, 
+    MatFormFieldModule,
+    FormsModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatInputModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

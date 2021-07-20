@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<app-top-navbar></app-top-navbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [opened]=true>
+      <mat-nav-list>
+  
+        <a mat-list-item > Recipes </a>
+        <a mat-list-item > Groceries </a>
+        <a mat-list-item > Pantry </a>
+        <a mat-list-item > Meals </a>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
