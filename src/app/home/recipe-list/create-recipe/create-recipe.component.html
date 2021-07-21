@@ -12,6 +12,23 @@
                 <input matInput id="cuisine" type="text" formControlName="cuisine">
             </mat-form-field>
         </p>
+        <p>
+            <mat-form-field class="example-full-width">
+                <mat-label for="servings">Servings: </mat-label>
+                <input matInput type="number" placeholder="Ex. 1" formControlName="servings" min="1">
+                <span matSuffix>servings</span>
+              </mat-form-field>
+        </p>
+            <div formArrayName="ingredients">
+                <button mat-icon-button type="button" (click)="addItem()">Add Item</button>
+                <p>
+                    <mat-form-field *ngFor="let item of ingredients.controls; let i = index;">
+                        <input matInput id="ingredient-{{ i }}" placeholder="Ingredient {{ i+1 }}: " [formControlName]="i">
+                    </mat-form-field>
+                </p>
+            </div>
+
+        
 
 
     <button mat-button type="submit" [disabled]="!form.valid">Submit</button>
