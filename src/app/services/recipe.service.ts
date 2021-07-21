@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../interfaces/recipes';
+import { recipeData } from './recipes.constant';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  recipeData: Recipe[] = [
-    { name: 'wow', cuisine: 'Indian' },
-    { name: '123', cuisine: 'Italian' },
-  ];
-  constructor() {}
+  recipeData: Recipe[];
+
+  constructor() {
+    this.recipeData = recipeData;
+  }
 
   public getRecipes(): Recipe[] {
     return this.recipeData;

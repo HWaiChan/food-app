@@ -23,7 +23,7 @@ export class CreateRecipeComponent implements OnInit {
   ngOnInit(): void {}
 
   createRecipe(recipe: Recipe): void {
-    console.log(recipe);
+    this._recipeServie.addRecipe(recipe);
   }
 
   onSubmit(): void {
