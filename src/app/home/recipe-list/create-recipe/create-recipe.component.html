@@ -1,5 +1,6 @@
 <div class="example-container" [class.mat-elevation-z2]=true>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h2>Recipe</h2>
         <p>
             <mat-form-field class="example-full-width">
                 <mat-label for="name">Recipe Name: </mat-label>
@@ -19,14 +20,16 @@
                 <span matSuffix>servings</span>
               </mat-form-field>
         </p>
-            <div formArrayName="ingredients">
-                <button mat-icon-button type="button" (click)="addItem()">Add Item</button>
-                <p>
-                    <mat-form-field *ngFor="let item of ingredients.controls; let i = index;">
-                        <input matInput id="ingredient-{{ i }}" placeholder="Ingredient {{ i+1 }}: " [formControlName]="i">
-                    </mat-form-field>
-                </p>
-            </div>
+        
+        <div formArrayName="ingredients">
+            <h2>Ingredients</h2>
+            <button mat-icon-button type="button" (click)="addItem()">+ Add Ingredient</button>
+            <p>
+                <mat-form-field *ngFor="let item of ingredients.controls; let i = index;">
+                    <input matInput id="ingredient-{{ i }}" placeholder="Ingredient {{ i+1 }}: " [formControlName]="i">
+                </mat-form-field>
+            </p>
+        </div>
 
         
 

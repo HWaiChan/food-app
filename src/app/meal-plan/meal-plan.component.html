@@ -1,25 +1,39 @@
-<div class="example-container">
-    <h2>Recipe Bank</h2>
-    <div
-      cdkDropList
-      #todoList="cdkDropList"
-      [cdkDropListData]="todo"
-      [cdkDropListConnectedTo]="[doneList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-    </div>
-  </div>
-  
-  <div class="example-container">
-    <h2>Monday</h2>
-    <div
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="done"
-      [cdkDropListConnectedTo]="[todoList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-    </div>
-  </div>
+<div cdkDropListGroup>
+  <mat-grid-list cols="4" rowHeight="4:3">
+    <mat-grid-tile [colspan]="1">
+      <div class="example-container">
+        <h2>Recipe Bank</h2>
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="recipes"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div *ngFor="let item of recipes" cdkDrag>
+            {{ item }}
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+      <div
+        class="example-container"
+        *ngFor="let dayPlan of weekPlanMap | keyvalue: asIsOrder"
+      >
+        <h2>{{ dayPlan.key }}</h2>
+        <div
+          cdkDropList
+          #monList="cdkDropList"
+          [cdkDropListData]="dayPlan.value"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="example-box" *ngFor="let item of dayPlan.value" cdkDrag>
+            {{ item }}
+          </div>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

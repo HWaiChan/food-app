@@ -6,8 +6,11 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-recipe',
@@ -17,7 +20,11 @@ import {
 export class CreateRecipeComponent implements OnInit {
   form: FormGroup;
   items: FormArray;
-  constructor(private _recipeServie: RecipeService, private fb: FormBuilder) {
+  constructor(
+    private _recipeServie: RecipeService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.items = this.fb.array([new FormControl()]);
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -35,11 +42,11 @@ export class CreateRecipeComponent implements OnInit {
 
   onSubmit(): void {
     const filteredInt: string[] = this.ingredients.controls
-      .filter((formcontrol) => {
-        return !!formcontrol.value;
+      .filter((fmCtrl) => {
+        return !!fmCtrl.value;
       })
-      .map((frmContrl) => {
-        return frmContrl.value;
+      .map((fmCtrl) => {
+        return fmCtrl.value;
       });
 
     const recipe: Recipe = {
@@ -50,6 +57,7 @@ export class CreateRecipeComponent implements OnInit {
     };
 
     this.createRecipe(recipe);
+    this.router.navigate(['recipes']);
   }
 
   get ingredients() {

@@ -1,6 +1,6 @@
 import { Recipe } from '../interfaces/recipes';
 
-// to be json
+// to be json or some sort of persisting data source
 export const recipeData: Recipe[] = [
   {
     name: 'Chicken Korma',

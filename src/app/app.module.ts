@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
@@ -49,6 +50,7 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
     MatListModule,
     MatInputModule,
     DragDropModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
