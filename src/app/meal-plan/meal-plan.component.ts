@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
+  copyArrayItem,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
@@ -28,6 +29,32 @@ export class MealPlanComponent implements OnInit {
     this.weekPlanMap.set('Sunday', []);
   }
 
+  getIngredientList(): string[] {
+    let ingredientsList: string[] = [];
+    for (let dumb of this.weekPlanMap.values()) {
+      if (dumb.length > 0) {
+        let list: string[] = this._recipeService.getIngredients(dumb);
+        ingredientsList = ingredientsList.concat(list);
+      }
+    }
+    console.log('Total List', ingredientsList);
+
+    return ingredientsList;
+  }
+
+  getGroceryList(): Map<string, number> {
+    let ingredientsList: string[] = [];
+    let map: Map<string, number>;
+    ingredientsList = this.getIngredientList();
+    map = ingredientsList.reduce(
+      (acc, e) => acc.set(e, (acc.get(e) || 0) + 1),
+      new Map()
+    );
+    console.log(map);
+
+    return map;
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -36,12 +63,28 @@ export class MealPlanComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      if (event.previousContainer.id === 'recipeBank') {
+        copyArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      } else if (event.container.id === 'recipeBank') {
+        transferArrayItem(
+          event.previousContainer.data,
+          [],
+          event.previousIndex,
+          event.currentIndex
+        );
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
     }
   }
 

@@ -18,11 +18,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
 import { CreateRecipeComponent } from './home/recipe-list/create-recipe/create-recipe.component';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
     MatInputModule,
     DragDropModule,
     MatGridListModule,
+    FlexLayoutModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
