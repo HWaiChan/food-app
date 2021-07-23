@@ -6,6 +6,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { RecipeService } from '../services/recipe.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-meal-plan',
@@ -14,7 +15,7 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class MealPlanComponent implements OnInit {
   recipes: string[] = [];
-
+  displayList: string = '';
   weekPlanMap: Map<string, string[]> = new Map();
   constructor(private _recipeService: RecipeService) {}
 
@@ -42,7 +43,11 @@ export class MealPlanComponent implements OnInit {
     return ingredientsList;
   }
 
-  getGroceryList(): Map<string, number> {
+  stringifyList(map: Map<string, number>): string {
+    let jsonObject: object = Object.fromEntries(map);
+    return JSON.stringify(jsonObject);
+  }
+  getGroceryList(): void {
     let ingredientsList: string[] = [];
     let map: Map<string, number>;
     ingredientsList = this.getIngredientList();
@@ -52,7 +57,7 @@ export class MealPlanComponent implements OnInit {
     );
     console.log(map);
 
-    return map;
+    this.displayList = this.stringifyList(map);
   }
 
   drop(event: CdkDragDrop<string[]>) {
