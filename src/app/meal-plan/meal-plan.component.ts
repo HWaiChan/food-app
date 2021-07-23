@@ -28,6 +28,19 @@ export class MealPlanComponent implements OnInit {
     this.weekPlanMap.set('Sunday', []);
   }
 
+  getIngredientList(): string[] {
+    let ingredientsList: string[] = [];
+    for (let dumb of this.weekPlanMap.values()) {
+      if (dumb.length > 0) {
+        let list: string[] = this._recipeService.getIngredients(dumb);
+        ingredientsList = ingredientsList.concat(list);
+      }
+    }
+    console.log('Total List', ingredientsList);
+
+    return ingredientsList;
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

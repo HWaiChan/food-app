@@ -23,6 +23,7 @@ import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
 import { CreateRecipeComponent } from './home/recipe-list/create-recipe/create-recipe.component';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
     MatInputModule,
     DragDropModule,
     MatGridListModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

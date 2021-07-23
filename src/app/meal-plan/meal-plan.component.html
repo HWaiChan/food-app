@@ -1,22 +1,25 @@
-<div cdkDropListGroup>
-  <mat-grid-list cols="4" rowHeight="4:3">
-    <mat-grid-tile [colspan]="1">
-      <div class="example-container">
-        <h2>Recipe Bank</h2>
-        <div
-          cdkDropList
-          #todoList="cdkDropList"
-          [cdkDropListData]="recipes"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <div *ngFor="let item of recipes" cdkDrag>
-            {{ item }}
-          </div>
+<div class="example-container">
+  <h2>Meal Plan</h2>
+  <button mat-button (click)="getIngredientList()">
+    Generate Ingredient List
+  </button>
+  <button mat-button>+ Create Recipe</button>
+  <div cdkDropListGroup fxLayout="row">
+    <div class="example-container">
+      <h2>Recipe Bank</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="recipes"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div class="example-box" *ngFor="let item of recipes" cdkDrag>
+          {{ item }}
         </div>
       </div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="3">
+    </div>
+    <div fxLayout="row wrap" fxLayoutGap="30px">
       <div
         class="example-container"
         *ngFor="let dayPlan of weekPlanMap | keyvalue: asIsOrder"
@@ -34,6 +37,6 @@
           </div>
         </div>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+  </div>
 </div>

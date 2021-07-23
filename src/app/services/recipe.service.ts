@@ -19,4 +19,31 @@ export class RecipeService {
   public addRecipe(recipe: Recipe): void {
     this.recipeData.push(recipe);
   }
+
+  public getIngredients(recipeNames: string[]): string[] {
+    let ingredientList: string[] = [];
+
+    recipeNames
+      .map((name) => {
+        return this.getRecipe(name);
+      })
+      .filter((recipe) => {
+        return recipe != undefined;
+      })
+      .map((recipe) => {
+        return recipe?.ingredients;
+      })
+      .forEach((list) => {
+        if (!!list) {
+          ingredientList = ingredientList.concat(list);
+        }
+      });
+    return ingredientList;
+  }
+
+  public getRecipe(recipeName: string): Recipe | undefined {
+    return this.recipeData.find((recipe) => {
+      return recipe.name == recipeName;
+    });
+  }
 }
