@@ -1,6 +1,6 @@
 <div class="example-container">
   <h2>Meal Plan</h2>
-  <button mat-button (click)="getIngredientList()">
+  <button mat-button (click)="getGroceryList()">
     Generate Ingredient List
   </button>
   <button mat-button>+ Create Recipe</button>
@@ -9,6 +9,7 @@
       <h2>Recipe Bank</h2>
       <div
         cdkDropList
+        id="recipeBank"
         #todoList="cdkDropList"
         [cdkDropListData]="recipes"
         class="example-list"
