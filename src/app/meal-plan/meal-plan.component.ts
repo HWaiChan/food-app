@@ -6,7 +6,8 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { RecipeService } from '../services/recipe.service';
-import { stringify } from '@angular/compiler/src/util';
+import { MatDialog } from '@angular/material/dialog';
+import { ExportMealPlanComponent } from './export-meal-plan/export-meal-plan.component';
 
 @Component({
   selector: 'app-meal-plan',
@@ -17,7 +18,10 @@ export class MealPlanComponent implements OnInit {
   recipes: string[] = [];
   displayList: string = '';
   weekPlanMap: Map<string, string[]> = new Map();
-  constructor(private _recipeService: RecipeService) {}
+  constructor(
+    private _recipeService: RecipeService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.recipes = this._recipeService.getRecipes().map((ele) => ele.name);
@@ -28,6 +32,13 @@ export class MealPlanComponent implements OnInit {
     this.weekPlanMap.set('Friday', []);
     this.weekPlanMap.set('Saturday', []);
     this.weekPlanMap.set('Sunday', []);
+  }
+  openDialog(): void {
+    this.dialog.open(ExportMealPlanComponent, {
+      data: {
+        list: this.displayList,
+      },
+    });
   }
 
   getIngredientList(): string[] {
@@ -45,19 +56,18 @@ export class MealPlanComponent implements OnInit {
 
   stringifyList(map: Map<string, number>): string {
     let jsonObject: object = Object.fromEntries(map);
-    return JSON.stringify(jsonObject);
+    return JSON.stringify(jsonObject, null, 4);
   }
-  getGroceryList(): void {
+
+  updateGroceryList(): void {
     let ingredientsList: string[] = [];
-    let map: Map<string, number>;
+    let countedMap: Map<string, number>;
     ingredientsList = this.getIngredientList();
-    map = ingredientsList.reduce(
+    countedMap = ingredientsList.reduce(
       (acc, e) => acc.set(e, (acc.get(e) || 0) + 1),
       new Map()
     );
-    console.log(map);
-
-    this.displayList = this.stringifyList(map);
+    this.displayList = this.stringifyList(countedMap);
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -75,6 +85,7 @@ export class MealPlanComponent implements OnInit {
           event.previousIndex,
           event.currentIndex
         );
+        this.updateGroceryList();
       } else if (event.container.id === 'recipeBank') {
         transferArrayItem(
           event.previousContainer.data,
@@ -89,6 +100,7 @@ export class MealPlanComponent implements OnInit {
           event.previousIndex,
           event.currentIndex
         );
+        this.updateGroceryList();
       }
     }
   }
