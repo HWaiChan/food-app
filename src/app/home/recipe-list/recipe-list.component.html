@@ -13,7 +13,7 @@
     <button mat-button [routerLink]="'/create-recipe'">+ Create Recipe</button>
   </div>
 
-  <table class="table">
+  <!--   <table class="table">
     <thead>
       <tr>
         <th scope="col">Dish</th>
@@ -29,6 +29,22 @@
         <td>{{ ele.ingredients + "------- Servings:" + ele.servings }}</td>
       </tr>
     </tbody>
-  </table>
-  <!-- Content here -->
+  </table> -->
+  <mat-accordion>
+    <mat-expansion-panel hideToggle *ngFor="let recipe of recipeData">
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ recipe.name }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <display-recipe [recipe]="recipe"></display-recipe>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!--   <table
+    mat-table
+    [dataSource]="recipeData"
+    class="mat-elevation-z8 demo-table"
+  >
+    <tr mat-header-row *matHeaderRowDef="recipeColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: recipeColumns"></tr>
+  </table> -->
 </div>

@@ -20,6 +20,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
@@ -28,6 +30,7 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ExportMealPlanComponent } from './meal-plan/export-meal-plan/export-meal-plan.component';
 import { SaveAsTxtComponent } from './meal-plan/export-meal-plan/save-as-txt/save-as-txt.component';
+import { DisplayRecipeComponent } from './home/recipe-list/display-recipe/display-recipe.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { SaveAsTxtComponent } from './meal-plan/export-meal-plan/save-as-txt/sav
     MealPlanComponent,
     ExportMealPlanComponent,
     SaveAsTxtComponent,
+    DisplayRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,8 @@ import { SaveAsTxtComponent } from './meal-plan/export-meal-plan/save-as-txt/sav
     FlexLayoutModule,
     ClipboardModule,
     MatDialogModule,
+    MatTableModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
