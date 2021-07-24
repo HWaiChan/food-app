@@ -15,7 +15,9 @@
   <mat-accordion>
     <mat-expansion-panel hideToggle *ngFor="let recipe of recipeData">
       <mat-expansion-panel-header>
-        <mat-panel-title> {{ recipe.name }} </mat-panel-title>
+        <mat-panel-title>
+          <mat-icon>restaurant_menu</mat-icon> {{ recipe.name }}
+        </mat-panel-title>
       </mat-expansion-panel-header>
       <display-recipe [recipe]="recipe"></display-recipe>
     </mat-expansion-panel>

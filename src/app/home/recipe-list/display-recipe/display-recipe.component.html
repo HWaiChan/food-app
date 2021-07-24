@@ -20,7 +20,10 @@
 <div>
   <p>
     Ingredients:
-    <mat-form-field *ngFor="let item of recipe.ingredients; let i = index">
+    <mat-form-field
+      appearance="fill"
+      *ngFor="let item of recipe.ingredients; let i = index"
+    >
       <input
         matInput
         placeholder="Ingredient {{ i + 1 }}: "
