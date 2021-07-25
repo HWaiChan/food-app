@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/interfaces/recipes';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'display-recipe',
@@ -9,7 +10,16 @@ import { Recipe } from 'src/app/interfaces/recipes';
 export class DisplayRecipeComponent implements OnInit {
   @Input()
   recipe: Recipe = { name: '', cuisine: '', ingredients: [], servings: 1 };
-  constructor() {}
+
+  editedRecipe: Recipe = {
+    name: '',
+    cuisine: '',
+    ingredients: [],
+    servings: 1,
+  };
+  constructor(_recipeService: RecipeService) {}
 
   ngOnInit(): void {}
+
+  onSave(): void {}
 }

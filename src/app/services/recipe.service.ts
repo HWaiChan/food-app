@@ -46,4 +46,10 @@ export class RecipeService {
       return recipe.name == recipeName;
     });
   }
+
+  public deleteRecipe(recipeName: string): void {
+    this.recipeData = this.recipeData.filter(
+      (recipe) => recipe.name !== recipeName
+    );
+  }
 }

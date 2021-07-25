@@ -6,3 +6,15 @@
   padding: 16px;
   margin-bottom: 16px;
 }
+.right-aligned-header > .mat-content {
+  justify-content: space-between;
+}
+.mat-content > mat-panel-title,
+.mat-content > mat-panel-description {
+  flex: 0 0 auto;
+}
+
+.mat-expansion-panel-header-description {
+  display: flex;
+  justify-content: flex-end;
+}
