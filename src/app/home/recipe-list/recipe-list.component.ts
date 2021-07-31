@@ -9,17 +9,22 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class RecipeListComponent implements OnInit {
   recipeData: Recipe[] = [];
+
   constructor(private _recipeService: RecipeService) {
-    this.recipeData = this._recipeService.getRecipes();
+    this._recipeService.recipeData$.subscribe((data) => {
+      console.log('New data', data);
+
+      this.recipeData = data;
+    });
   }
 
   ngOnInit(): void {}
 
-  createRecipe(): void {}
+  export(): void {
+    // Return some sort of .json
+  }
 
-  // TODO: Can't I do some Subscriptions and Subjects?
   onDelete(recipe: Recipe): void {
     this._recipeService.deleteRecipe(recipe.name);
-    this.recipeData = this._recipeService.getRecipes();
   }
 }

@@ -24,7 +24,9 @@ export class MealPlanComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.recipes = this._recipeService.getRecipes().map((ele) => ele.name);
+    this._recipeService.recipeData$.subscribe((data) => {
+      this.recipes = data.map((ele) => ele.name);
+    });
     this.weekPlanMap.set('Monday', []);
     this.weekPlanMap.set('Tuesday', []);
     this.weekPlanMap.set('Wednesday', []);

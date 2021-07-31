@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Recipe } from '../interfaces/recipes';
 import { recipeData } from './recipes.constant';
 
@@ -6,18 +7,20 @@ import { recipeData } from './recipes.constant';
   providedIn: 'root',
 })
 export class RecipeService {
-  recipeData: Recipe[];
+  recipeDataSubject: BehaviorSubject<Recipe[]>;
 
   constructor() {
-    this.recipeData = recipeData;
+    this.recipeDataSubject = new BehaviorSubject(recipeData);
   }
 
-  public getRecipes(): Recipe[] {
-    return this.recipeData;
+  get recipeData$() {
+    return this.recipeDataSubject.asObservable();
   }
 
   public addRecipe(recipe: Recipe): void {
-    this.recipeData.push(recipe);
+    let newData: Recipe[] = this.recipeDataSubject.value;
+    newData.push(recipe);
+    this.recipeDataSubject.next(newData);
   }
 
   public getIngredients(recipeNames: string[]): string[] {
@@ -42,14 +45,15 @@ export class RecipeService {
   }
 
   public getRecipe(recipeName: string): Recipe | undefined {
-    return this.recipeData.find((recipe) => {
+    return this.recipeDataSubject.value.find((recipe) => {
       return recipe.name == recipeName;
     });
   }
 
   public deleteRecipe(recipeName: string): void {
-    this.recipeData = this.recipeData.filter(
+    let recipeData = this.recipeDataSubject.value.filter(
       (recipe) => recipe.name !== recipeName
     );
+    this.recipeDataSubject.next(recipeData);
   }
 }
