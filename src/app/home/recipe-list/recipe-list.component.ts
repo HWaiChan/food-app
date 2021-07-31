@@ -12,8 +12,6 @@ export class RecipeListComponent implements OnInit {
 
   constructor(private _recipeService: RecipeService) {
     this._recipeService.recipeData$.subscribe((data) => {
-      console.log('New data', data);
-
       this.recipeData = data;
     });
   }
