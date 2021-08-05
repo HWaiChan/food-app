@@ -25,4 +25,8 @@ export class RecipeListComponent implements OnInit {
   onDelete(recipe: Recipe): void {
     this._recipeService.deleteRecipe(recipe.name);
   }
+
+  onSave(): void {
+    this._recipeService.saveRecipes();
+  }
 }

@@ -58,7 +58,9 @@ export class MealPlanComponent implements OnInit {
 
   stringifyList(map: Map<string, number>): string {
     let jsonObject: object = Object.fromEntries(map);
-    return JSON.stringify(jsonObject, null, 4);
+    return JSON.stringify(jsonObject, null, 4)
+      .replaceAll('"', '')
+      .replace(/[{}]/g, '');
   }
 
   updateGroceryList(): void {

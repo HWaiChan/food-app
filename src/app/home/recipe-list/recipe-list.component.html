@@ -11,6 +11,8 @@
   <div class="d-flex justify-content-between">
     <app-search [recipes]="recipeData"></app-search>
     <button mat-button [routerLink]="'/create-recipe'">+ Create Recipe</button>
+
+    <button mat-button (click)="onSave()">Save</button>
   </div>
   <mat-accordion>
     <mat-expansion-panel hideToggle *ngFor="let recipe of recipeData">

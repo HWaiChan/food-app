@@ -31,6 +31,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ExportMealPlanComponent } from './meal-plan/export-meal-plan/export-meal-plan.component';
 import { SaveAsTxtComponent } from './meal-plan/export-meal-plan/save-as-txt/save-as-txt.component';
 import { DisplayRecipeComponent } from './home/recipe-list/display-recipe/display-recipe.component';
+import { NgxElectronModule } from 'ngx-electron';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { DisplayRecipeComponent } from './home/recipe-list/display-recipe/displa
     MatDialogModule,
     MatTableModule,
     MatExpansionModule,
+    NgxElectronModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
