@@ -14,16 +14,16 @@ The Wai of the Recipes is the correct way to facilitate your meal planning! You 
 
 ### 1. View your recipes.
 
-![Image of Recipe List](images\recipe-list.png)
+![Image of Recipe List](/images/recipe-list.png)
 
 ### 2. Create new recipes.
 
-![Image of Create Recipe](images\create-recipe.png)
+![Image of Create Recipe](/images/create-recipe.png)
 
 ### 3. Organise your week meal plan.
 
-![Image of Meal Plan](images\meal-plan.png)
+![Image of Meal Plan](/images/meal-plan.png)
 
 ### 4. Export your shopping list.
 
-![Image of Shopping List](images\export-list.png)
+![Image of Shopping List](/images/export-list.png)
