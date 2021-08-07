@@ -1,44 +1,45 @@
-<div class="example-container" [class.mat-elevation-z2]=true>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <h2>Recipe</h2>
-        <p>
-            <mat-form-field class="example-full-width">
-                <mat-label for="name">Recipe Name: </mat-label>
-                <input matInput id="name" type="text" formControlName="name">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field class="example-full-width">
-                <mat-label for="cuisine">Cuisine: </mat-label>
-                <input matInput id="cuisine" type="text" formControlName="cuisine">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field class="example-full-width">
-                <mat-label for="servings">Servings: </mat-label>
-                <input matInput type="number" placeholder="Ex. 1" formControlName="servings" min="1">
-                <span matSuffix>servings</span>
-              </mat-form-field>
-        </p>
-        
-        <div formArrayName="ingredients">
-            <h2>Ingredients</h2>
-            <button mat-icon-button type="button" (click)="addItem()">+ Add Ingredient</button>
-            <p>
-                <mat-form-field *ngFor="let item of ingredients.controls; let i = index;">
-                    <input matInput id="ingredient-{{ i }}" placeholder="Ingredient {{ i+1 }}: " [formControlName]="i">
-                </mat-form-field>
-            </p>
-        </div>
+<div class="example-container" [class.mat-elevation-z2]="true">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Recipe</h2>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label for="name">Recipe Name: </mat-label>
+        <input matInput id="name" type="text" formControlName="name" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label for="servings">Servings: </mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Ex. 1"
+          formControlName="servings"
+          min="1"
+        />
+        <span matSuffix>servings</span>
+      </mat-form-field>
+    </p>
 
-        
-
+    <div formArrayName="ingredients">
+      <h2>Ingredients</h2>
+      <button mat-icon-button type="button" (click)="addItem()">
+        + Add Ingredient
+      </button>
+      <p>
+        <mat-form-field
+          *ngFor="let item of ingredients.controls; let i = index"
+        >
+          <input
+            matInput
+            id="ingredient-{{ i }}"
+            placeholder="Ingredient {{ i + 1 }}: "
+            [formControlName]="i"
+          />
+        </mat-form-field>
+      </p>
+    </div>
 
     <button mat-button type="submit" [disabled]="!form.valid">Submit</button>
-    </form>
-
-    
-
-
+  </form>
 </div>
-

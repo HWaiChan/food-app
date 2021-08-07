@@ -28,7 +28,6 @@ export class CreateRecipeComponent implements OnInit {
     this.items = this.fb.array([new FormControl()]);
     this.form = this.fb.group({
       name: ['', Validators.required],
-      cuisine: ['', Validators.required],
       ingredients: this.fb.array([new FormControl()]),
       servings: [0, Validators.required],
     });
@@ -51,7 +50,6 @@ export class CreateRecipeComponent implements OnInit {
 
     const recipe: Recipe = {
       name: this.form.get('name')?.value,
-      cuisine: this.form.get('cuisine')?.value,
       ingredients: filteredInt,
       servings: this.form.get('servings')?.value,
     };

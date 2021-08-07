@@ -9,11 +9,10 @@ import { RecipeService } from 'src/app/services/recipe.service';
 })
 export class DisplayRecipeComponent implements OnInit {
   @Input()
-  recipe: Recipe = { name: '', cuisine: '', ingredients: [], servings: 1 };
+  recipe: Recipe = { name: '', ingredients: [], servings: 1 };
 
   editedRecipe: Recipe = {
     name: '',
-    cuisine: '',
     ingredients: [],
     servings: 1,
   };

@@ -1,8 +1,10 @@
 <div class="example-container">
   <h2>Meal Plan</h2>
-  <p>{{ displayList }}</p>
-  <button mat-button (click)="openDialog()">Generate Ingredient List</button>
-  <button mat-button [routerLink]="'/create-recipe'">+ Create Recipe</button>
+  <span>
+    <button mat-button (click)="openDialog()">Generate Ingredient List</button>
+    <button mat-button [routerLink]="'/create-recipe'">+ Create Recipe</button>
+  </span>
+
   <div cdkDropListGroup fxLayout="row">
     <div class="example-container">
       <h2>Recipe Bank</h2>
