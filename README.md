@@ -6,22 +6,24 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## What does it do?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Wai of the Recipes is the correct way to facilitate your meal planning! You can create and change your recipes. You can plan your weekly meals quickly with a one click button to generate your shopping list!
 
-## Build
+## How to?
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. View your recipes.
 
-## Running unit tests
+![Image of Recipe List](images\recipe-list.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### 2. Create new recipes.
 
-## Running end-to-end tests
+![Image of Create Recipe](images\create-recipe.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 3. Organise your week meal plan.
 
-## Further help
+![Image of Meal Plan](images\meal-plan.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 4. Export your shopping list.
+
+![Image of Shopping List](images\export-list.png)
