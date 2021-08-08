@@ -22,6 +22,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { SearchComponent } from './home/recipe-list/search/search.component';
@@ -69,6 +70,7 @@ import { NgxElectronModule } from 'ngx-electron';
     MatTableModule,
     MatExpansionModule,
     NgxElectronModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
