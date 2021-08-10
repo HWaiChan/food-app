@@ -8,7 +8,8 @@ import { MealPlanComponent } from './meal-plan/meal-plan.component';
 
 const routes: Routes = [
   { path: 'help', component: AngularHelpComponent },
-  { path: 'create-recipe', component: CreateRecipeComponent },
+  { path: 'recipe', component: CreateRecipeComponent },
+  { path: 'recipe/:name', component: CreateRecipeComponent },
   { path: 'meal-plan', component: MealPlanComponent },
   { path: 'recipes', component: RecipeListComponent },
   { path: '**', component: HomeComponent },

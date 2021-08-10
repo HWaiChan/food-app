@@ -11,7 +11,7 @@
   <div class="d-flex justify-content-between">
     <app-search [recipes]="recipeData"></app-search>
     <div>
-      <button mat-button [routerLink]="'/create-recipe'">
+      <button mat-button [routerLink]="'/recipe'">
         <mat-icon>add</mat-icon> Recipe
       </button>
       <button mat-button (click)="onSave()">
@@ -27,7 +27,12 @@
           <div>{{ recipe.name }}</div>
         </mat-panel-title>
         <mat-panel-description>
-          <mat-icon (click)="onDelete(recipe)">delete</mat-icon>
+          <button mat-button [routerLink]="'/create-recipe'">
+            <mat-icon (click)="onEdit(recipe)">edit</mat-icon>
+          </button>
+          <button mat-button [routerLink]="'/create-recipe'">
+            <mat-icon (click)="onDelete(recipe)">delete</mat-icon>
+          </button>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <display-recipe [recipe]="recipe"></display-recipe>

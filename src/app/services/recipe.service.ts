@@ -19,9 +19,18 @@ export class RecipeService {
     return this.recipeDataSubject.asObservable();
   }
 
+  get recipeNames() {
+    return this.recipeDataSubject.value.map((recipe) => {
+      return recipe.name;
+    });
+  }
+
   public addRecipe(recipe: Recipe): void {
+    if (this.recipeNames.includes(recipe.name)) {
+      this.deleteRecipe(recipe.name);
+    }
     let newData: Recipe[] = this.recipeDataSubject.value;
-    newData.push(recipe);
+    this.recipeDataSubject.value.push(recipe);
     this.recipeDataSubject.next(newData);
   }
 

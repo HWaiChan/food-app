@@ -9,26 +9,28 @@ import { MatChipInputEvent } from '@angular/material/chips';
   templateUrl: './display-recipe.component.html',
   styleUrls: ['./display-recipe.component.css'],
 })
+
+/**
+ * This class not only displays information about the recipe, you can also edit.
+ * I know, I know, sorry!
+ */
 export class DisplayRecipeComponent implements OnInit {
   @Input()
   recipe: Recipe = { name: '', ingredients: [], servings: 1 };
+  /*
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  */
 
-  editedRecipe: Recipe = {
-    name: '',
-    ingredients: [],
-    servings: 1,
-  };
   constructor(_recipeService: RecipeService) {}
 
   ngOnInit(): void {}
 
   onSave(): void {}
 
-  add(event: MatChipInputEvent): void {
+  /*   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
     // Add our fruit
@@ -38,5 +40,5 @@ export class DisplayRecipeComponent implements OnInit {
 
     // Clear the input value
     event.chipInput!.clear();
-  }
+  } */
 }

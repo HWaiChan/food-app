@@ -1,4 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from 'src/app/interfaces/recipes';
 import {
@@ -19,18 +25,38 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateRecipeComponent implements OnInit {
   form: FormGroup;
-  items: FormArray;
+  // If its undefined, we are in the edit flow.
+  recipe: Recipe | undefined;
+
   constructor(
     private _recipeServie: RecipeService,
     private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router
   ) {
-    this.items = this.fb.array([new FormControl()]);
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      name: [{ value: '', disabled: false }, Validators.required],
       ingredients: this.fb.array([new FormControl()]),
       servings: [0, Validators.required],
     });
+    this.route.queryParams.subscribe((params) => {
+      if (params['name']) {
+        this.recipe = this._recipeServie.getRecipe(params['name']);
+        if (this.recipe) this.refillRecipeForm(this.recipe);
+      }
+    });
+  }
+
+  refillRecipeForm(recipe: Recipe): void {
+    this.form.patchValue({
+      name: recipe.name,
+      servings: recipe.servings,
+    });
+    this.form.setControl(
+      'ingredients',
+      this.fb.array(recipe.ingredients || [])
+    );
+    this.form.controls['name']?.disable();
   }
 
   ngOnInit(): void {}
@@ -62,9 +88,16 @@ export class CreateRecipeComponent implements OnInit {
     return this.form.get('ingredients') as FormArray;
   }
 
-  addItem(): void {
-    this.items = this.form.get('ingredients') as FormArray;
-    this.items.push(new FormControl());
+  addNewItem(): void {
+    let items = this.form.get('ingredients') as FormArray;
+    items.push(new FormControl());
+  }
+
+  addItem(string: string): void {
+    let items = this.form.get('ingredients') as FormArray;
+    const item = new FormControl();
+    item.setValue(string);
+    items.push(item);
   }
   createItem(): FormGroup {
     return this.fb.group({
