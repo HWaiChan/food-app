@@ -5,9 +5,12 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FormControl } from '@angular/forms';
 import { RecipeService } from '../services/recipe.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ExportMealPlanComponent } from './export-meal-plan/export-meal-plan.component';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-meal-plan',
@@ -15,6 +18,9 @@ import { ExportMealPlanComponent } from './export-meal-plan/export-meal-plan.com
   styleUrls: ['./meal-plan.component.css'],
 })
 export class MealPlanComponent implements OnInit {
+  searchControl = new FormControl();
+  searchFilteredRecipes: Observable<string[]>;
+
   recipes: string[] = [];
   displayList: string = '';
   weekPlanMap: Map<string, string[]> = new Map();
@@ -34,7 +40,21 @@ export class MealPlanComponent implements OnInit {
     this.weekPlanMap.set('Friday', []);
     this.weekPlanMap.set('Saturday', []);
     this.weekPlanMap.set('Sunday', []);
+
+    this.searchFilteredRecipes = this.searchControl.valueChanges.pipe(
+      startWith(''),
+      map((value: string) => this._filter(value))
+    );
   }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.recipes.filter((recipe) =>
+      recipe.toLowerCase().includes(filterValue)
+    );
+  }
+
   openDialog(): void {
     this.dialog.open(ExportMealPlanComponent, {
       data: {
@@ -51,8 +71,6 @@ export class MealPlanComponent implements OnInit {
         ingredientsList = ingredientsList.concat(list);
       }
     }
-    console.log('Total List', ingredientsList);
-
     return ingredientsList;
   }
 

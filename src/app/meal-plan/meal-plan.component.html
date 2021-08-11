@@ -5,9 +5,19 @@
     <button mat-button [routerLink]="'/recipe'">+ Create Recipe</button>
   </span>
 
-  <div cdkDropListGroup fxLayout="row">
-    <div class="example-container">
+  <div class="meal-plan-box" cdkDropListGroup fxLayout="row">
+    <div class="example-container" fxLayout="column">
       <h2>Recipe Bank</h2>
+      <mat-form-field>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="Number"
+          matInput
+          [formControl]="searchControl"
+        />
+      </mat-form-field>
+
       <div
         cdkDropList
         id="recipeBank"
@@ -16,7 +26,11 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of recipes" cdkDrag>
+        <div
+          class="example-box"
+          *ngFor="let item of searchFilteredRecipes | async"
+          cdkDrag
+        >
           {{ item }}
         </div>
       </div>

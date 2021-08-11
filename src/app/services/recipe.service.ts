@@ -96,7 +96,6 @@ export class RecipeService {
   }
 
   public saveRecipes(): void {
-    console.log('Saving recipes');
     if (this._electronService.ipcRenderer) {
       this._electronService.ipcRenderer.invoke(
         'saveRecipes',

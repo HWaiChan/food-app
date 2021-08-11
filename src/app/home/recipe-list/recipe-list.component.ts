@@ -19,10 +19,6 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  export(): void {
-    // Return some sort of .json
-  }
-
   onDelete(recipe: Recipe): void {
     this._recipeService.deleteRecipe(recipe.name);
   }
@@ -32,9 +28,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   onEdit(recipe: Recipe): void {
-    console.log('onEdit called');
-    // Need to find a way to route to the create page but with the recipe object.
-    // A recipe object is taken as an input in CreateRecipeComponent. But not sure if the Router can work with it.
     this.router.navigate(['recipe'], {
       queryParams: { name: recipe.name },
     });
